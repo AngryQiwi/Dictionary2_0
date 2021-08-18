@@ -8,7 +8,16 @@ import java.util.ArrayList;
 
 import static java.lang.String.join;
 
-public record DaoImpl(String pathToFile) {
+public class DaoImpl {
+    private String pathToFile;
+
+    public void setPathToFile(String pathToFile) {
+        this.pathToFile = pathToFile;
+    }
+
+    public DaoImpl(String pathToFile) {
+        this.pathToFile = pathToFile;
+    }
 
     public ArrayList<String> read() {
         try {
@@ -83,9 +92,8 @@ public record DaoImpl(String pathToFile) {
             for (String line : readLines) {
                 if (entryIsNotEqual(key, value, line)) {
                     arrayToWrite.add(line + "\n");
-                }
-                else{
-                    arrayToWrite.add(key+'-'+newValue+'\n');
+                } else {
+                    arrayToWrite.add(key + '-' + newValue + '\n');
                 }
             }
 
@@ -128,4 +136,5 @@ public record DaoImpl(String pathToFile) {
         }
         return fundedEntries;
     }
+
 }
